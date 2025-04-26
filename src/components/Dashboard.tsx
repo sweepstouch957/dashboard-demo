@@ -4,21 +4,27 @@ import { useState } from "react";
 import { ResponsiveBar } from "@nivo/bar";
 import { ResponsivePie } from "@nivo/pie";
 import { Card, CardContent } from "@/components/ui/card";
-import superfreshData from "@/data/superfresh.json";
-import keyfoodData from "@/data/keyfood.json";
 import { Select, SelectItem } from "@/components/ui/select";
 
-const dataSources = {
-  superfresh: superfreshData,
-  keyfood: keyfoodData,
+import {superfresh} from "@/data/superfresh";
+import {keyFoodData} from "@/data/keyfood";
+import { CampaignData, SummaryItem } from "@/models/Campaing";
+
+const superfreshData: CampaignData = superfresh;
+const keyfoodData: CampaignData = keyFoodData;
+
+const dataSources: Record<string, CampaignData> = {
+  superfresh: superfreshData as CampaignData,
+  keyfood: keyfoodData as CampaignData,
 };
 
 export default function CampaignDashboard() {
-  const [campaignKey, setCampaignKey] = useState("superfresh");
+  const [campaignKey, setCampaignKey] =
+    useState<keyof typeof dataSources>("superfresh");
 
   const data = dataSources[campaignKey];
 
-  const summary = [
+  const summary: SummaryItem[] = [
     { id: "Enviados", value: data.totalSent },
     { id: "Entregados", value: data.totalDelivered },
     { id: "Errores", value: data.totalErrors },
@@ -29,7 +35,12 @@ export default function CampaignDashboard() {
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
         <h1 className="text-3xl font-bold">📊 Dashboard de Campaña</h1>
 
-        <Select value={campaignKey} onValueChange={(value) => setCampaignKey(value)}>
+        <Select
+          value={campaignKey}
+          onValueChange={(value) =>
+            setCampaignKey(value as keyof typeof dataSources)
+          }
+        >
           <SelectItem value="superfresh">Shop Smart Supermarket</SelectItem>
           <SelectItem value="keyfood">Fine Fare Supermarket</SelectItem>
         </Select>
@@ -57,7 +68,9 @@ export default function CampaignDashboard() {
         <Card>
           <CardContent className="p-6">
             <p className="text-gray-500 text-sm mb-1">Costo Total</p>
-            <p className="text-2xl font-semibold">{data.totalCost} {data.currency}</p>
+            <p className="text-2xl font-semibold">
+              {data.totalCost} {data.currency}
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -72,7 +85,6 @@ export default function CampaignDashboard() {
               padAngle={0.7}
               cornerRadius={3}
               activeOuterRadiusOffset={8}
-              colors={{ scheme: "category10" }}
               borderWidth={1}
               borderColor={{ from: "color", modifiers: [["darker", 0.2]] }}
               arcLinkLabelsSkipAngle={10}
@@ -81,6 +93,12 @@ export default function CampaignDashboard() {
               arcLinkLabelsColor={{ from: "color" }}
               arcLabelsSkipAngle={10}
               arcLabelsTextColor={{ from: "color", modifiers: [["darker", 2]] }}
+              colors={({ id }) => {
+                if (id === "Errores") return "#FF4B4B"; // rojo error
+                if (id === "Entregados") return "#00C49F"; // verde entregado
+                if (id === "Enviados") return "#0088FE"; // azul enviado
+                return "#ccc"; // otro por si acaso
+              }}
             />
           </CardContent>
         </Card>
@@ -103,8 +121,6 @@ export default function CampaignDashboard() {
           </CardContent>
         </Card>
       </div>
-
-
     </div>
   );
 }
