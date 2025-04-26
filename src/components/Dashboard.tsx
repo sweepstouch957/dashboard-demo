@@ -46,7 +46,7 @@ export default function CampaignDashboard() {
         </Select>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
         <Card>
           <CardContent className="p-6">
             <p className="text-gray-500 text-sm mb-1">Total Mensajes</p>
@@ -63,6 +63,13 @@ export default function CampaignDashboard() {
           <CardContent className="p-6">
             <p className="text-gray-500 text-sm mb-1">Entregados</p>
             <p className="text-2xl font-semibold">{data.totalDelivered}</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardContent className="p-6">
+            <p className="text-gray-500 text-sm mb-1 text-red">Errores</p>
+            <p className="text-2xl font-semibold">{data.totalErrors}</p>
           </CardContent>
         </Card>
         <Card>
