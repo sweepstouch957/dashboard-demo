@@ -11,6 +11,10 @@ export type CampaignData = {
   totalErrors: number;
   totalCost: string;
   currency: string;
+  carrierFees?: {
+    amount: number;
+    percentage: number;
+  };
   messages: {
     phone: string;
     status: string;

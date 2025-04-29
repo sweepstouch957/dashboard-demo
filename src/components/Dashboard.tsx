@@ -6,8 +6,8 @@ import { ResponsivePie } from "@nivo/pie";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectItem } from "@/components/ui/select";
 
-import {superfresh} from "@/data/superfresh";
-import {keyFoodData} from "@/data/keyfood";
+import { superfresh } from "@/data/superfresh";
+import { keyFoodData } from "@/data/keyfood";
 import { CampaignData, SummaryItem } from "@/models/Campaing";
 
 const superfreshData: CampaignData = superfresh;
@@ -74,10 +74,13 @@ export default function CampaignDashboard() {
         </Card>
         <Card>
           <CardContent className="p-6">
-            <p className="text-gray-500 text-sm mb-1">Costo Total</p>
-            <p className="text-2xl font-semibold">
-              {data.totalCost} {data.currency}
-            </p>
+            <CardContent className="p-6">
+              <p className="text-gray-500 text-sm mb-1">Costo Total</p>
+              <p className="text-2xl font-semibold">
+                {data.totalMessages * (0.029*1.85)} {data.currency}
+              </p>
+          
+            </CardContent>
           </CardContent>
         </Card>
       </div>
