@@ -77,9 +77,9 @@ export default function CampaignDashboard() {
             <CardContent className="p-6">
               <p className="text-gray-500 text-sm mb-1">Costo Total</p>
               <p className="text-2xl font-semibold">
-                {data.totalMessages * (0.029*1.85)} {data.currency}
+                {((data.totalMessages ) * (0.029*1.8)).toFixed(2)}{" "}
+                {data.currency}
               </p>
-          
             </CardContent>
           </CardContent>
         </Card>
