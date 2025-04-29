@@ -33,7 +33,7 @@ export default function CampaignDashboard() {
   return (
     <div className="p-8 space-y-10 bg-gray-50 min-h-screen">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
-        <h1 className="text-3xl font-bold">📊 Dashboard de Campaña</h1>
+        <h1 className="text-3xl font-bold text-black">📊 Dashboard de Campaña</h1>
 
         <Select
           value={campaignKey}
