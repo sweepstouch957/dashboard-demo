@@ -5,22 +5,21 @@ import { ResponsiveBar } from "@nivo/bar";
 import { ResponsivePie } from "@nivo/pie";
 import { Card, CardContent } from "@/components/ui/card";
 import { Select, SelectItem } from "@/components/ui/select";
+import {  SummaryItem } from "@/models/Campaing";
 
-import { superfresh } from "@/data/superfresh";
-import { keyFoodData } from "@/data/keyfood";
-import { CampaignData, SummaryItem } from "@/models/Campaing";
+// Datos importados de múltiples tiendas
+import { CampaignData, campaigns as storeData } from "@/data/analitycs"; // contiene el array de campañas que me pasaste
 
-const superfreshData: CampaignData = superfresh;
-const keyfoodData: CampaignData = keyFoodData;
+const dataSources: Record<string, CampaignData> = storeData.reduce((acc, store) => {
+  const key = store.store.toLowerCase().replace(/[^a-z0-9]/gi, "_");
+  acc[key] = store;
+  return acc;
+}, {} as Record<string, CampaignData>);
 
-const dataSources: Record<string, CampaignData> = {
-  superfresh: superfreshData as CampaignData,
-  keyfood: keyfoodData as CampaignData,
-};
+const storeKeys = Object.keys(dataSources);
 
 export default function CampaignDashboard() {
-  const [campaignKey, setCampaignKey] =
-    useState<keyof typeof dataSources>("superfresh");
+  const [campaignKey, setCampaignKey] = useState<string>(storeKeys[0]);
 
   const data = dataSources[campaignKey];
 
@@ -33,16 +32,17 @@ export default function CampaignDashboard() {
   return (
     <div className="p-8 space-y-10 bg-gray-50 min-h-screen">
       <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
-        <h1 className="text-3xl font-bold text-black">📊 Dashboard de Campaña</h1>
+        <h1 className="text-3xl font-bold text-black">📊 Dashboard de Campañas</h1>
 
         <Select
           value={campaignKey}
-          onValueChange={(value) =>
-            setCampaignKey(value as keyof typeof dataSources)
-          }
+          onValueChange={(value) => setCampaignKey(value)}
         >
-          <SelectItem value="superfresh">Shop Smart Supermarket</SelectItem>
-          <SelectItem value="keyfood">Fine Fare Supermarket</SelectItem>
+          {storeKeys.map((key) => (
+            <SelectItem key={key} value={key}>
+              {dataSources[key].store}
+            </SelectItem>
+          ))}
         </Select>
       </div>
 
@@ -65,7 +65,6 @@ export default function CampaignDashboard() {
             <p className="text-2xl font-semibold">{data.totalDelivered}</p>
           </CardContent>
         </Card>
-
         <Card>
           <CardContent className="p-6">
             <p className="text-gray-500 text-sm mb-1 text-red">Errores</p>
@@ -74,13 +73,10 @@ export default function CampaignDashboard() {
         </Card>
         <Card>
           <CardContent className="p-6">
-            <CardContent className="p-6">
-              <p className="text-gray-500 text-sm mb-1">Costo Total</p>
-              <p className="text-2xl font-semibold">
-                {((data.totalMessages ) * (0.057)).toFixed(2)}{" "}
-                {data.currency}
-              </p>
-            </CardContent>
+            <p className="text-gray-500 text-sm mb-1">Costo Total</p>
+            <p className="text-2xl font-semibold">
+              {parseFloat(data.totalCost).toFixed(2)} {data.currency}
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -104,10 +100,10 @@ export default function CampaignDashboard() {
               arcLabelsSkipAngle={10}
               arcLabelsTextColor={{ from: "color", modifiers: [["darker", 2]] }}
               colors={({ id }) => {
-                if (id === "Errores") return "#FF4B4B"; // rojo error
-                if (id === "Entregados") return "#00C49F"; // verde entregado
-                if (id === "Enviados") return "#0088FE"; // azul enviado
-                return "#ccc"; // otro por si acaso
+                if (id === "Errores") return "#FF4B4B";
+                if (id === "Entregados") return "#00C49F";
+                if (id === "Enviados") return "#0088FE";
+                return "#ccc";
               }}
             />
           </CardContent>
