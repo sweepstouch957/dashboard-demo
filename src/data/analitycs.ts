@@ -7,6 +7,7 @@ export interface CampaignData {
   totalErrors: number;
   totalCost: string;
   currency: string;
+  date?: string; // Optional property for date
 }
 
 export const campaigns: CampaignData[] = [
@@ -19,6 +20,7 @@ export const campaigns: CampaignData[] = [
     totalCost: "408.3096",
     currency: "USD",
     store: "Fine Fare Supermarket 700 Suffolk Ave, Brentwood, NY 11717",
+    date: "2025-04-26",
   },
   {
     campaignId: "680c8270a56424a5eaa9e2b2",
@@ -29,6 +31,7 @@ export const campaigns: CampaignData[] = [
     totalCost: "29.1948",
     currency: "USD",
     store: "Shop Smart Supermarket 146 Bloomfield Ave, Newark, NJ 07104",
+    date: "2025-04-26",
   },
   {
     campaignId: "6814a52eb8d43d76b0d77cb0",
@@ -39,6 +42,7 @@ export const campaigns: CampaignData[] = [
     totalErrors: 63,
     totalCost: "57.9000",
     currency: "USD",
+    date: "2025-05-02",
   },
   {
     campaignId: "6814a6b6b8d43d76b0d77cb9",
@@ -49,6 +53,7 @@ export const campaigns: CampaignData[] = [
     totalErrors: 73,
     totalCost: "44.8800",
     currency: "USD",
+    date: "2025-05-02",
   },
   {
     campaignId: "6814a7a3b8d43d76b0d77cbf",
@@ -59,6 +64,7 @@ export const campaigns: CampaignData[] = [
     totalErrors: 154,
     totalCost: "90.4200",
     currency: "USD",
+    date: "2025-05-02",
   },
   {
     campaignId: "6814a94bb8d43d76b0d77cc8",
@@ -69,6 +75,7 @@ export const campaigns: CampaignData[] = [
     totalErrors: 172,
     totalCost: "46.5000",
     currency: "USD",
+    date: "2025-05-02",
   },
   {
     campaignId: "6814ab78b8d43d76b0d77cd5",
@@ -79,6 +86,7 @@ export const campaigns: CampaignData[] = [
     totalErrors: 204,
     totalCost: "80.7000",
     currency: "USD",
+    date: "2025-05-02",
   },
   {
     campaignId: "6814aa71b8d43d76b0d77ccf",
@@ -90,6 +98,7 @@ export const campaigns: CampaignData[] = [
     totalErrors: 50,
     totalCost: "23.1600",
     currency: "USD",
+    date: "2025-05-02",
   },
   {
     campaignId: "6814ac28b8d43d76b0d77cda",
@@ -101,6 +110,7 @@ export const campaigns: CampaignData[] = [
     totalErrors: 157,
     totalCost: "128.1111",
     currency: "USD",
+    date: "2025-05-02",
   },
   {
     campaignId: "681600206e2ea2b9a22b5ba8",
@@ -111,6 +121,7 @@ export const campaigns: CampaignData[] = [
     totalCost: "74.4111",
     currency: "USD",
     store: "Shop Fair Supermarket 3917 White Plains Rd, Bronx, NY 10466",
+    date: "2025-05-03",
   },
   {
     campaignId: "6815ff9e6e2ea2b9a22b5ba3",
@@ -121,5 +132,6 @@ export const campaigns: CampaignData[] = [
     totalCost: "28.9548",
     currency: "USD",
     store: "Shop Smart Supermarket 146 Bloomfield Ave, Newark, NJ 07104",
+    date: "2025-05-03",
   },
 ];

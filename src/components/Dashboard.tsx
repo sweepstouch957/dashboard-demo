@@ -45,8 +45,9 @@ export default function CampaignDashboard() {
           ))}
         </Select>
       </div>
-
+          
       <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
+
         <Card>
           <CardContent className="p-6">
             <p className="text-gray-500 text-sm mb-1">Total Mensajes</p>
@@ -74,9 +75,11 @@ export default function CampaignDashboard() {
         <Card>
           <CardContent className="p-6">
             <p className="text-gray-500 text-sm mb-1">Costo Total</p>
-            <p className="text-2xl font-semibold">
+            <p className="text-2xl font-semibold mb-1">
               {parseFloat(data.totalCost).toFixed(2)} {data.currency}
             </p>
+            <p className="text-gray-500 text-sm mb-1">Fecha</p>
+            <p className="text-2xl font-semibold">{data.date}</p>
           </CardContent>
         </Card>
       </div>
