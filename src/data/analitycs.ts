@@ -30,7 +30,7 @@ export const campaigns: CampaignData[] = [
     totalErrors: 65,
     totalCost: "29.1948",
     currency: "USD",
-    store: "Shop Smart Supermarket 146 Bloomfield Ave, Newark, NJ 07104",
+    store: "Shop Smart Supermarket 146 Bloomfield Ave, Newark, NJ 07104, USA",
     date: "2025-04-26",
   },
   {
